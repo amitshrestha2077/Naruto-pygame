@@ -1,6 +1,7 @@
 import pygame
 pygame.init()
 # This is the first commit
+# This is my second commit
 
 win = pygame.display.set_mode((500, 500))
 
