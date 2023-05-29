@@ -2,7 +2,7 @@ import pygame
 pygame.init()
 # This is the first commit
 # This is my second commit
-#thia is my third commit
+# this is my third commit
 
 win = pygame.display.set_mode((500, 500))
 
