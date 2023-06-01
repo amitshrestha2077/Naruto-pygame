@@ -2,7 +2,13 @@ import pygame
 
 pygame.init()
 
-win = pygame.display.set_mode((500, 500))
+win = pygame.display.set_mode((700, 500))
+
+walkRight = [pygame.image.load('pics\\NR2.png'), pygame.image.load('pics\\NR3.png')]
+walkleft = [pygame.image.load('pics\\NR2.png'), pygame.image.load('pics\\NR3.png')]
+
+bg = pygame.image.load('pics\\bg.png')
+stan = pygame.image.load('pics\\Nstanding.png')
 
 x = 50
 y = 400
@@ -14,6 +20,11 @@ isjump = False
 jumpheight = 10
 
 run = True
+
+
+def redrawgamewindow():
+    win.blit(bg, (0, 0))
+
 
 while run:
     pygame.time.delay(50)
@@ -48,8 +59,9 @@ while run:
             isjump = False
             jumpheight = 10
 
-    win.fill((0, 0, 0))
     pygame.draw.rect(win, (255, 255, 250), (x, y, width, height))
     pygame.display.update()
+
+    redrawgamewindow()
 
 pygame.quit()
