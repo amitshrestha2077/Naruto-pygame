@@ -4,11 +4,11 @@ pygame.init()
 
 win = pygame.display.set_mode((700, 500))
 
-walkRight = [pygame.image.load('pics\\NR2.png'), pygame.image.load('pics\\NR3.png')]
-walkleft = [pygame.image.load('pics\\NR2.png'), pygame.image.load('pics\\NR3.png')]
+walkRight = [pygame.image.load('pics/NR2.png'), pygame.image.load('pics/NR3.png')]
+walkLeft = [pygame.image.load('pics/NL2.png'), pygame.image.load('pics/NL3.png')]
 
-bg = pygame.image.load('pics\\bg.png')
-stan = pygame.image.load('pics\\Nstanding.png')
+bg = pygame.image.load('pics/bg.png')
+stan = pygame.image.load('pics/Nstanding.png')
 
 clock = pygame.time.Clock()
 
@@ -17,45 +17,39 @@ y = 400
 width = 40
 height = 60
 speed = 5
-isjump = False
+isJump = False
 
-jumpheight = 10
+jumpHeight = 10
 
 left = False
 right = False
-walkcount = 0
+walkCount = 0
 
 run = True
 
+def redrawGameWindow():
+    global walkCount
 
-def redrawgamewindow():
-    global left
-    global right
-    global walkcount
     win.blit(bg, (0, 0))
 
-    if walkcount + 1 > 6:
-        walkcount = 0
+    if walkCount + 1 >= 6:
+        walkCount = 0
 
-    if left and isjump == False:
-        win.blit(walkleft[walkcount // 2], (x, y))
-
-    elif right and isjump == False:
-        win.blit(walkRight[walkcount // 2], (x, y))
-
-    elif right and isjump:
-        win.blit(walkRight[2], (x, y))
-
-    elif left and isjump:
-        win.blit(walkleft[1], (x, y))
-
-    elif not (isjump):
+    if left and not isJump:
+        win.blit(walkLeft[walkCount // 3], (x, y))
+        walkCount += 1
+    elif right and not isJump:
+        win.blit(walkRight[walkCount // 3], (x, y))
+        walkCount += 1
+    elif isJump:
+        win.blit(walkRight[1], (x, y))
+    else:
         win.blit(stan, (x, y))
+
+    pygame.display.update()
 
 
 while run:
-
-    ###  jump
     pygame.time.delay(50)
 
     for event in pygame.event.get():
@@ -68,32 +62,32 @@ while run:
         x -= speed
         left = True
         right = False
-    # broundry
-    if keys[pygame.K_RIGHT] and x < 692 - width - speed:
+    elif keys[pygame.K_RIGHT] and x < 700 - width - speed:
         x += speed
-        right = False
-        left = True
-
-    if isjump == False:
-        if keys[pygame.K_SPACE]:
-            isjump = True
-
+        right = True
+        left = False
     else:
-        if jumpheight >= -10:
+        right = False
+        left = False
+        walkCount = 0
+
+    if not isJump:
+        if keys[pygame.K_SPACE]:
+            isJump = True
+            right = False
+            left = False
+            walkCount = 0
+    else:
+        if jumpHeight >= -10:
             neg = 1
-
-            if jumpheight < 0:
+            if jumpHeight < 0:
                 neg = -1
-
-            y -= (jumpheight ** 2) * 0.5 * neg
-            jumpheight -= 1
-
+            y -= (jumpHeight ** 2) * 0.5 * neg
+            jumpHeight -= 1
         else:
-            isjump = False
-            jumpheight = 10
+            isJump = False
+            jumpHeight = 10
 
-    pygame.display.update()
-
-    redrawgamewindow()
+    redrawGameWindow()
 
 pygame.quit()
