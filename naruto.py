@@ -58,7 +58,7 @@ while run:
             run = False
 
     keys = pygame.key.get_pressed()
-###########   left  ##################
+###########   left  ###################
     if keys[pygame.K_LEFT] and x > speed:
         x -= speed
         left = True
