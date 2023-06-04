@@ -27,6 +27,7 @@ walkCount = 0
 
 run = True
 
+
 def redrawGameWindow():
     global walkCount
 
