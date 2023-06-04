@@ -58,12 +58,14 @@ while run:
             run = False
 
     keys = pygame.key.get_pressed()
-
+###########   left  ##################
     if keys[pygame.K_LEFT] and x > speed:
         x -= speed
         left = True
         right = False
-    elif keys[pygame.K_RIGHT] and x < 700 - width - speed:
+
+    ###########   Right  ##################
+    elif keys[pygame.K_RIGHT] and x < 678 - width - speed:
         x += speed
         right = True
         left = False
@@ -72,6 +74,7 @@ while run:
         left = False
         walkCount = 0
 
+    ###########   jump  ##################
     if not isJump:
         if keys[pygame.K_SPACE]:
             isJump = True
