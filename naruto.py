@@ -81,7 +81,7 @@ while run:
         naruto.left = False
         naruto.walkCount = 0
 
-    ## Jump
+    # Jump
     if not naruto.isJump:
         if keys[pygame.K_SPACE]:
             naruto.isJump = True
