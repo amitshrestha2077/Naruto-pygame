@@ -33,7 +33,7 @@ class Player:
         if self.left and not self.isJump:
             win.blit(walkLeft[self.walkCount // 3], (self.x, self.y))
             self.walkCount += 1
-
+##
         elif self.right and not self.isJump:
             win.blit(walkRight[self.walkCount // 3], (self.x, self.y))
             self.walkCount += 1
